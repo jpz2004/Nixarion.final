@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+  <meta charset="UTF-8">
+  <meta viewport="width=device-width, initial-scale=1.0">
+  <title>Ingreso | Nixarion</title>
+  <link rel="icon" href="Nixarion_libre_blanco_16x16.png" type="image/png">
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: rgba(255, 255, 255, 0.9);
+      font-family: Arial, Helvetica, sans-serif;
+      text-align: center;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(#0000008d, #ffffff48, #00000086),
+                  url("Fondo_ropa.png") no-repeat center center;
+      background-size: cover;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    h1 {
+      font-family: 'Times New Roman', Times, serif;
+      margin-top: 50px;
+      font-size: 2rem;
+      letter-spacing: 2px;
+      color: white;
+      padding: 5px 15px;
+      background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0, 0, 0, 0.3));
+      border-radius: 8px;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+    }
+
+    #clock {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin: 20px 0;
+      text-shadow: 0 0 10px rgb(255, 255, 255);
+      color: #000;
+    }
+
+    .contenedor-login {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    /* ESTILO UNIFICADO PARA BOTONES PRINCIPALES */
+    .btn-main, #toggle-login {
+      font-family: 'Times New Roman', Times, serif;
+      padding: 8px 20px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      background: white;
+      color: #111;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: 0.3s;
+    }
+
+    .btn-main:hover, #toggle-login:hover {
+      background: black;
+      color: white;
+      transform: scale(1.1);
+    }
+
+    /* Colocar botones lado a lado */
+    .botones-lado {
+      display: flex;
+      gap: 20px;
+      margin-top: 10px;
+    }
+
+    #login-box {
+      display: none;
+      background: rgba(0,0,0,0.55);
+      padding: 15px 20px;
+      border-radius: 15px;
+      backdrop-filter: blur(6px);
+      animation: fadeIn 0.4s ease;
+    }
+
+    #login-box input {
+      margin: 6px 0;
+      padding: 6px;
+      border: none;
+      border-radius: 5px;
+      width: 170px;
+    }
+
+    #login-box button {
+      margin-top: 8px;
+      padding: 6px 15px;
+      border: none;
+      background: white;
+      color: black;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      font-family: 'Times New Roman', Times, serif;
+    }
+
+    #login-box button:hover {
+      background: black;
+      color: white;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1><em>BIENVENIDO A <strong>NIXARION</strong></em></h1>
+
+  <div id="clock"></div>
+
+  <div class="contenedor-login">
+
+    <!-- BOTONES LADO A LADO -->
+    <div class="botones-lado">
+      <a href="Inicio.html">
+        <button class="btn-main"><em>INGRESAR</em></button>
+      </a>
+
+      <button id="toggle-login">Ingresar con usuario</button>
+    </div>
+
+    <div id="login-box">
+      <input type="text" id="user" placeholder="Usuario"><br>
+      <input type="password" id="pass" placeholder="Contraseña"><br>
+      <button onclick="login()">Entrar</button>
+    </div>
+
+    <div id="aviso-datos" style="
+      display: none;
+      background: rgba(0,0,0,0.6);
+      padding: 10px 15px;
+      border-radius: 10px;
+      margin-top: 10px;
+      font-size: 0.9rem;
+      backdrop-filter: blur(6px);
+    ">
+      <p id="texto-aviso" style="margin: 0;">
+        Al continuar aceptas nuestra 
+        <a href="tratamiento_de_datos.html" style="color: #fff; font-weight: bold; text-decoration: underline;">
+          Política de Tratamiento de Datos
+        </a>.
+      </p>
+
+      <button id="aceptar-datos" style="
+        margin-top: 8px;
+        padding: 5px 10px;
+        background: white;
+        color: black;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+        font-family: 'Times New Roman', Times, serif;
+      ">Autorizar y continuar</button>
+    </div>
+
+
+  </div>
+
+  <script>
+    function actualizarReloj() {
+      const clock = document.getElementById('clock');
+      const ahora = new Date();
+      clock.textContent =
+        `${String(ahora.getHours()).padStart(2, '0')}:` +
+        `${String(ahora.getMinutes()).padStart(2, '0')}:` +
+        `${String(ahora.getSeconds()).padStart(2, '0')}`;
+    }
+    setInterval(actualizarReloj, 1000);
+    actualizarReloj();
+
+    const toggleBtn = document.getElementById("toggle-login");
+    const loginBox = document.getElementById("login-box");
+    const aviso = document.getElementById("aviso-datos");
+    const textoAviso = document.getElementById("texto-aviso");
+
+    toggleBtn.addEventListener("click", () => {
+      loginBox.style.display =
+        loginBox.style.display === "none" || loginBox.style.display === ""
+          ? "block"
+          : "none";
+    });
+
+    function login() {
+      const user = document.getElementById("user").value.trim();
+      const pass = document.getElementById("pass").value.trim();
+
+      if (user === "" || pass === "") {
+        alert("Por favor ingresa usuario y contraseña.");
+        return;
+      }
+
+      localStorage.setItem("nixTempUser", user);
+
+      textoAviso.innerHTML = `
+        Bienvenido <strong>${user}</strong> a Nixarion<br><br>
+        Al continuar aceptas nuestra 
+        <a href="tratamiento_de_datos.html" style="color: #fff; font-weight: bold; text-decoration: underline;">
+          Política de Tratamiento de Datos
+        </a>.
+      `;
+
+      aviso.style.display = "block";
+    }
+
+    document.getElementById("aceptar-datos").addEventListener("click", () => {
+      const user = localStorage.getItem("nixTempUser");
+
+      if (!user) {
+        alert("Error en el usuario. Intenta nuevamente.");
+        return;
+      }
+
+      localStorage.setItem("nixUser", user);
+
+      localStorage.removeItem("nixDatos");
+
+      window.location.href = "Inicio.html";
+    });
+  </script>
+
+
+</body>
+</html>

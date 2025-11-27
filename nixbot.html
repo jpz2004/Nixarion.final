@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>nixbot | Nixarion</title>
+  <meta name="description" content="Descubre tu estilo con nuestro nixbot">
+  <meta name="keywords" content="Nixarion, ropa, moda, Colombia, premium">
+  <meta name="author" content="Nixarion Colombia">
+  <link rel="icon" href="Nixarion_libre_blanco_16x16.png" type="image/png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="nixbot.css">
+  <link rel="stylesheet" href="nixbot.css">
+  <script src="TuCarrito.js" defer></script>
+  <script src="nixbot.js" defer></script>
+  <script src="main.js" defer></script>
+    
+</head>
+<body>
+
+<header>
+  <h1><a href="Inicio.html" class="titulo-link">nixbot</a></h1>
+    <nav class="nav" role="navigation" aria-label="Menú principal">
+      <ul class="menu">
+        <li><a href="Inicio.html">Inicio</a></li>
+        <li><a href="Coleccion.html">Coleccion</a></li>
+        <li><a href="nixbot.html">nixbot</a></li>
+        <li><a href="SobreNosotros.html">Sobre Nosotros</a></li>
+        <li><a href="Ayuda.html">Ayuda</a></li>
+        <li class="carrito">
+          <a href="TuCarrito.html" aria-label="ver carrito">
+            <img class="carrito-logo" src="Carrito_negro.png" alt="Icono carrito de compras" width="40" height="40">
+          </a>
+        </li>
+      </ul>
+    </nav>
+</header>
+
+<main class="nixbot-split">
+
+  <div class="chat-side">
+    <div id="chat-box" class="chat-box-full">
+      <div id="chat-messages">
+        <div class="mensaje-bot">
+          <strong>nixbot:</strong> Bienvenid@ viajero del estilo   
+          Aquí no solo hablamos<br><br>
+          Aquí construimos tu identidad<br><br>
+          👋🏻 Iniciemos con un ¡Hola! 
+        </div>
+      </div>
+
+      <div id="chat-input">
+        <input type="text" id="user-input" placeholder="Escribe tu mensaje...">
+        <button id="send-btn">Enviar</button>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="producto-side">
+    <div class="producto-destacado-nix">
+      <h2> Producto Exclusivo</h2>
+      <img src="camisa_nix.png" alt="Producto destacado">
+      <h3>Camiseta Edición Polo</h3>
+      <p>
+        Confeccionada en <b>65% Poliéster</b> y <b>35% Algodón</b>.  
+        Fresca, resistente y elegante.  
+        Esto no es una prenda… es una declaración.
+      </p>
+      <p class="precio">💲150.000 COP</p>
+      <button onclick="window.location.href='Coleccion.html'">
+        Ver en colección
+      </button>
+    </div>
+  </div>
+
+</main>
+
+<script src="nixbot.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
